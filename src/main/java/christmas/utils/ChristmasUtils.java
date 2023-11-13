@@ -18,7 +18,7 @@ public class ChristmasUtils {
         }
     }
 
-    public static List<String> parseToList(String input) {
+    public static List<String> splitWithComma(String input) {
         validateComma(input);
         validateHypen(input);
         return Arrays.asList(input.split(COMMA));
@@ -44,12 +44,4 @@ public class ChristmasUtils {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해 주세요.");
         }
     }
-
-
-//    public static EnumMap<Menu, Integer> parseToOrder(String input) {
-//        List<String> parseWithComma = parseToList(input);
-//
-//        return
-//
-//    }
 }
