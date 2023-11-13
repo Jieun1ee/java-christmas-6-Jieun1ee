@@ -17,7 +17,6 @@ public class ReservationDate {
     }
 
     public int getReservationDate() {
-        System.out.println(date);
         return this.date;
     }
 }
