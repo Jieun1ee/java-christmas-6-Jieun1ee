@@ -1,8 +1,16 @@
 package christmas.domain;
 
-public class Benefits {
+import christmas.Menu;
+import java.util.EnumMap;
 
-    public Benefits(int date) {
+public class Benefits {
+    public Benefits(int date, EnumMap<Menu, Integer> orderList) {
+    }
+
+    public int totalCost(EnumMap<Menu, Integer> orderList) {
+        return orderList.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().menuPrice * entry.getValue())
+                .sum();
     }
 
 }

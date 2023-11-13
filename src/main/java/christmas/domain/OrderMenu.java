@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrderMenu {
-    EnumMap<Menu, Integer> menuQuantity;
+    EnumMap<Menu, Integer> orderList;
 
     public OrderMenu() {
-        menuQuantity = new EnumMap<>(Menu.class);
+        orderList = new EnumMap<>(Menu.class);
     }
 
     // depth : 2 -> 함수 분리 해야 함
@@ -33,11 +33,5 @@ public class OrderMenu {
                 .filter(menu -> menu.menuName.equals(menuName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 여기는 없는 값을 입력하면, 유효하지 않은 주문입니다. 다시 입력해 주세요."));
-    }
-
-    public int totalCost(EnumMap<Menu, Integer> orderList) {
-        return orderList.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().menuPrice * entry.getValue())
-                .sum();
     }
 }
