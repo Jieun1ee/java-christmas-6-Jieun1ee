@@ -13,7 +13,7 @@ public class OrderMenu {
         menuQuantity = new EnumMap<>(Menu.class);
     }
 
-    // depth : 2
+    // depth : 2 -> 함수 분리 해야 함
     public EnumMap<Menu, Integer> menuList(List<String> parseToList) {
         return parseToList.stream()
                 .map(item -> item.split("-"))
@@ -27,10 +27,17 @@ public class OrderMenu {
                 ));
     }
 
+    // 메쏘드 명 수정 하고 싶음
     private Menu getMenuName(String menuName) {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.menuName.equals(menuName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 여기는 없는 값을 입력하면, 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+    }
+
+    public int totalCost(EnumMap<Menu, Integer> orderList) {
+        return orderList.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().menuPrice * entry.getValue())
+                .sum();
     }
 }
