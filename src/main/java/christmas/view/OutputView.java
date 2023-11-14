@@ -116,10 +116,14 @@ public class OutputView {
         System.out.println(PAYMENT);
         System.out.println(decimalFormat.format(payment));
     }
-    
+
     public static void printEventBadge(String badge) {
         System.out.print(ENTER);
         System.out.println(EVENT_BADGE);
         System.out.println(badge);
+    }
+
+    public static void printException(Exception e) {
+        System.out.println(e.getMessage());
     }
 }
