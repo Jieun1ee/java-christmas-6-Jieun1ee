@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import christmas.Menu;
 import christmas.utils.ChristmasUtils;
 import java.util.List;
 import java.util.stream.Collectors;
