@@ -1,7 +1,9 @@
 package christmas.domain;
 
 import christmas.utils.ChristmasUtils;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OrderMenu {
@@ -9,8 +11,7 @@ public class OrderMenu {
 
     public OrderMenu(String input) {
         this.totalOrder = createTotalOrderMenu(input);
-        checkMenuType();
-        checkTotalCount();
+        validateOrderMenu();
     }
 
     public List<Order> createTotalOrderMenu(String input) {
@@ -40,6 +41,12 @@ public class OrderMenu {
         return totalOrder;
     }
 
+    private void validateOrderMenu() {
+        checkMenuType();
+        checkDuplicate();
+        checkTotalCount();
+    }
+
     private void checkTotalCount() {
         int totalCount = totalOrder.stream()
                 .mapToInt(Order::getQuantity)
@@ -59,5 +66,14 @@ public class OrderMenu {
     private boolean isAllBeverage() {
         return totalOrder.stream()
                 .allMatch(order -> "Beverage".equals(order.getMenu().getMenuType()));
+    }
+
+    private void checkDuplicate() {
+        Set<Order> orderSet = new HashSet<>();
+        totalOrder.forEach(order -> {
+            if (!orderSet.add(order)) {
+                throw new IllegalArgumentException("[ERROR] 중복");
+            }
+        });
     }
 }
