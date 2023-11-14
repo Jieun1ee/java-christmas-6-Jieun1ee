@@ -99,7 +99,7 @@ public class OutputView {
             System.out.println(GIFT_DISCOUNT + decimalFormatMinus.format(giftDiscount));
         }
     }
-    
+
     public static void printTotalDiscount(int totalDiscount) {
         System.out.print(ENTER);
         System.out.println(TOTAL_DISCOUNT);
@@ -109,5 +109,11 @@ public class OutputView {
         if (totalDiscount != NO_DISCOUNT) {
             System.out.println(decimalFormatMinus.format(totalDiscount));
         }
+    }
+    
+    public static void printPayment(int payment) {
+        System.out.print(ENTER);
+        System.out.println(PAYMENT);
+        System.out.println(decimalFormat.format(payment));
     }
 }
