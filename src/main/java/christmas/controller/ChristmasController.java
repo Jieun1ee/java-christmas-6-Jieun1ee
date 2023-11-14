@@ -12,9 +12,17 @@ public class ChristmasController {
     public void run() {
         ReservationDate reservationDate = inputReservationDate();
         int date = reservationDate.getReservationDate();
+
+        OrderMenu orderMenu = new OrderMenu(inputReservationMenu());
+        List<Order> orderTotalMenu = orderMenu.getTotalOrder();
+        int totalCost = orderMenu.calculateTotalCost();
     }
 
     private ReservationDate inputReservationDate() {
         return new ReservationDate(ChristmasUtils.stringDateToInt(InputView.visitDate()));
+    }
+
+    private String inputReservationMenu() {
+        return InputView.menuOrder();
     }
 }

@@ -33,4 +33,8 @@ public class OrderMenu {
                 .mapToInt(order -> order.getMenu().menuPrice * order.getQuantity())
                 .sum();
     }
+
+    public List<Order> getTotalOrder() {
+        return totalOrder;
+    }
 }
