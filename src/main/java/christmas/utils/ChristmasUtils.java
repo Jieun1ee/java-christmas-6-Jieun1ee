@@ -1,8 +1,6 @@
 package christmas.utils;
 
-import christmas.Menu;
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.List;
 
 public class ChristmasUtils {
@@ -20,7 +18,6 @@ public class ChristmasUtils {
 
     public static List<String> splitWithComma(String input) {
         validateComma(input);
-        validateHypen(input);
         return Arrays.asList(input.split(COMMA));
     }
 
@@ -37,11 +34,33 @@ public class ChristmasUtils {
         if (input.startsWith(HYPEN) || input.endsWith(HYPEN)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해 주세요.");
         }
-        if (input.contains(HYPEN + HYPEN) || input.contains(COMMA + HYPEN) || input.contains(HYPEN + COMMA)) {
+        if (input.contains(HYPEN + HYPEN)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해 주세요.");
         }
         if (input.contains(SPACE + HYPEN) || input.contains(HYPEN + SPACE)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해 주세요.");
         }
     }
+
+    public static List<String> splitWithHypen(String input) {
+        validateHypen(input);
+        List<String> order = List.of(input.split(HYPEN));
+        validateOrderForm(order);
+        return order;
+    }
+
+    private static void validateOrderForm(List<String> order) {
+        if (order.size() != 2) {
+            throw new IllegalArgumentException("올바른 형태가 아님.");
+        }
+    }
+
+    public static int stringQuantityToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
 }
