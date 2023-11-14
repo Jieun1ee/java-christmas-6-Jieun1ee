@@ -17,7 +17,7 @@ public class ChristmasController {
         List<Order> orderTotalMenu = orderMenu.getTotalOrder();
         int totalCost = orderMenu.calculateTotalCost();
 
-        OutputView.output(date);
+        OutputView.output(date, orderTotalMenu);
     }
 
     private ReservationDate inputReservationDate() {
