@@ -10,9 +10,10 @@ public class DecemberDiscount {
     private int discount;
 
     public DecemberDiscount(int date, List<Order> totalOrder) {
-        this.discount = dayDiscount(date, totalOrder);
+        this.discount = calculateDecemberDiscount(date, totalOrder);
     }
-    private int dayDiscount(int date, List<Order> totalOrder) {
+
+    private int calculateDecemberDiscount(int date, List<Order> totalOrder) {
         // 1일, 2일 (주말) 부터 시작
         if ((date % DAYS_IN_WEEK == 1) || (date % DAYS_IN_WEEK == 2)) {
             return multiple(countMain(totalOrder), DECEMBER_DISCOUNT_AMOUNT);
