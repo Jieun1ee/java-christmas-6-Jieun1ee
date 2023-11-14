@@ -53,13 +53,13 @@ public class TotalOrderMenu {
                 .sum();
 
         if (totalCount > 20) {
-            throw new IllegalArgumentException("[ERROR] 총 수량이 20 초과");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
     private void checkMenuType() {
         if (isAllBeverage()) {
-            throw new IllegalArgumentException("[ERROR] 모든 주문이 음료");
+            throw new IllegalArgumentException("[[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -72,7 +72,7 @@ public class TotalOrderMenu {
         Set<Order> orderSet = new HashSet<>();
         totalOrder.forEach(order -> {
             if (!orderSet.add(order)) {
-                throw new IllegalArgumentException("[ERROR] 중복");
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         });
     }
