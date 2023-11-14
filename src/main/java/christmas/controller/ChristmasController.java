@@ -1,7 +1,8 @@
 package christmas.controller;
 
-import christmas.domain.Order;
-import christmas.domain.OrderMenu;
+import christmas.domain.event.Benefits;
+import christmas.domain.order.Order;
+import christmas.domain.order.TotalOrderMenu;
 import christmas.domain.ReservationDate;
 import christmas.utils.ChristmasUtils;
 import christmas.view.InputView;
@@ -13,11 +14,9 @@ public class ChristmasController {
         ReservationDate reservationDate = inputReservationDate();
         int date = reservationDate.getReservationDate();
 
-        OrderMenu orderMenu = new OrderMenu(inputReservationMenu());
-        List<Order> orderTotalMenu = orderMenu.getTotalOrder();
-        int totalCost = orderMenu.calculateTotalCost();
-
-        OutputView.output(date, orderTotalMenu, totalCost);
+        TotalOrderMenu totalOrderMenu = new TotalOrderMenu(inputReservationMenu());
+        List<Order> totalOrder = totalOrderMenu.getTotalOrder();
+        int totalCost = totalOrderMenu.calculateTotalCost();
     }
 
     private ReservationDate inputReservationDate() {
