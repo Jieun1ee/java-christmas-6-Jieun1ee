@@ -99,4 +99,15 @@ public class OutputView {
             System.out.println(GIFT_DISCOUNT + decimalFormatMinus.format(giftDiscount));
         }
     }
+    
+    public static void printTotalDiscount(int totalDiscount) {
+        System.out.print(ENTER);
+        System.out.println(TOTAL_DISCOUNT);
+        if (totalDiscount == NO_DISCOUNT) {
+            System.out.println(decimalFormat.format(totalDiscount));
+        }
+        if (totalDiscount != NO_DISCOUNT) {
+            System.out.println(decimalFormatMinus.format(totalDiscount));
+        }
+    }
 }
