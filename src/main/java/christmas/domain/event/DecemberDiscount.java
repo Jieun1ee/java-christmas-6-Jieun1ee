@@ -6,7 +6,9 @@ import java.util.List;
 public class DecemberDiscount {
     private final int DECEMBER_DISCOUNT_AMOUNT = 2023;
     private final int DAYS_IN_WEEK = 7;
+    private final int NO_DISCOUNT = 0;
     private int discount;
+
     public DecemberDiscount(int date, List<Order> totalOrder) {
         this.discount = dayDiscount(date, totalOrder);
     }
@@ -32,9 +34,16 @@ public class DecemberDiscount {
     }
 
     private int multiple(int count, int discount) {
+        // 이 0과 NO_DISCOUNT는 다른 의미이므로 0을 그대로 입력
         if (count > 0) {
+
             return count * discount;
         }
-        return 0;
+        // 없는 경우 모두 0을 반환
+        return NO_DISCOUNT;
+    }
+
+    public int getDecemberDiscount() {
+        return discount;
     }
 }
