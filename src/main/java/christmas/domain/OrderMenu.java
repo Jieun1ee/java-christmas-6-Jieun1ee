@@ -9,6 +9,7 @@ public class OrderMenu {
 
     public OrderMenu(String input) {
         this.totalOrder = createTotalOrderMenu(input);
+        checkTotalCount();
     }
 
     public List<Order> createTotalOrderMenu(String input) {
@@ -36,5 +37,15 @@ public class OrderMenu {
 
     public List<Order> getTotalOrder() {
         return totalOrder;
+    }
+
+    private void checkTotalCount() {
+        int totalCount = totalOrder.stream()
+                .mapToInt(Order::getQuantity)
+                .sum();
+
+        if (totalCount > 20) {
+            throw new IllegalArgumentException("[ERROR] 총 수량이 20 초과");
+        }
     }
 }
