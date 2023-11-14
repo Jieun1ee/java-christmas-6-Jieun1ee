@@ -19,7 +19,7 @@ public class ChristmasController {
         ReservationDate reservationDate = inputReservationDate();
         int date = reservationDate.getReservationDate();
 
-        TotalOrderMenu totalOrderMenu = new TotalOrderMenu(inputReservationMenu());
+        TotalOrderMenu totalOrderMenu = inputReservationMenu();
         List<Order> totalOrder = totalOrderMenu.getTotalOrder();
         int totalCost = totalOrderMenu.calculateTotalCost();
 
@@ -27,11 +27,21 @@ public class ChristmasController {
     }
 
     private ReservationDate inputReservationDate() {
-        return new ReservationDate(ChristmasUtils.stringDateToInt(InputView.visitDate()));
+        try {
+            return new ReservationDate(ChristmasUtils.stringDateToInt(InputView.visitDate()));
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return inputReservationDate();
+        }
     }
 
-    private String inputReservationMenu() {
-        return InputView.menuOrder();
+    private TotalOrderMenu inputReservationMenu() {
+        try {
+            return new TotalOrderMenu(InputView.menuOrder());
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return inputReservationMenu();
+        }
     }
 
     private void printResult(int date, int totalCost, List<Order> totalOrder) {
@@ -49,7 +59,8 @@ public class ChristmasController {
         OutputView.printOrderMenu(totalOrder);
         OutputView.printTotalCost(totalCost);
         OutputView.printGiftMenu(giftDiscount);
-        OutputView.printBenefitDetail(christmasDiscountAmount, decemberDiscountAmount, isWeekend, specialDiscountAmount, giftDiscount, totalCost);
+        OutputView.printBenefitDetail(christmasDiscountAmount, decemberDiscountAmount, isWeekend,
+                specialDiscountAmount, giftDiscount, totalCost);
         OutputView.printTotalDiscount(totalDiscountAmount);
         OutputView.printPayment(paymentAmount);
         OutputView.printEventBadge(eventBadge);
