@@ -19,4 +19,8 @@ public class GiftEvent {
     private boolean applyGiveawayEvent(int totalCost) {
         return totalCost >= GIFT_EVENT_THRESHOLD;
     }
+
+    public int getGiftDiscount() {
+        return discount;
+    }
 }
