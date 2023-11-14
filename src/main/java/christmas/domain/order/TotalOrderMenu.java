@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.order;
 
 import christmas.utils.ChristmasUtils;
 import java.util.HashSet;
@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class OrderMenu {
+public class TotalOrderMenu {
     private final List<Order> totalOrder;
 
-    public OrderMenu(String input) {
+    public TotalOrderMenu(String input) {
         this.totalOrder = createTotalOrderMenu(input);
         validateOrderMenu();
     }
