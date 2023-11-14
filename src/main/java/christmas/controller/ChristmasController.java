@@ -49,8 +49,7 @@ public class ChristmasController {
         OutputView.printOrderMenu(totalOrder);
         OutputView.printTotalCost(totalCost);
         OutputView.printGiftMenu(giftDiscount);
-        OutputView.printBenefitDetail(
-                christmasDiscountAmount, decemberDiscountAmount, isWeekend, specialDiscountAmount, giftDiscount, totalCost);
+        OutputView.printBenefitDetail(christmasDiscountAmount, decemberDiscountAmount, isWeekend, specialDiscountAmount, giftDiscount, totalCost);
         OutputView.printTotalDiscount(totalDiscountAmount);
         OutputView.printPayment(paymentAmount);
         OutputView.printEventBadge(eventBadge);
