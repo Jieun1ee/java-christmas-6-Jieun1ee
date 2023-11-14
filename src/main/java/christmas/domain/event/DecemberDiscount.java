@@ -8,9 +8,11 @@ public class DecemberDiscount {
     private final int DAYS_IN_WEEK = 7;
     private final int NO_DISCOUNT = 0;
     private int discount;
+    private boolean isWeekendDiscount;
 
     public DecemberDiscount(int date, List<Order> totalOrder) {
         this.discount = calculateDecemberDiscount(date, totalOrder);
+        this.isWeekendDiscount = validateWeekend(date);
     }
 
     private int calculateDecemberDiscount(int date, List<Order> totalOrder) {
@@ -23,15 +25,17 @@ public class DecemberDiscount {
     }
 
     private int countMain(List<Order> totalOrder) {
-        return (int) totalOrder.stream()
+        return totalOrder.stream()
                 .filter(order -> order.getMenu().getMenuType().equals("Main"))
-                .count();
+                .mapToInt(Order::getQuantity)
+                .sum();
     }
 
     private int countDessert(List<Order> totalOrder) {
-        return (int) totalOrder.stream()
+        return totalOrder.stream()
                 .filter(order -> order.getMenu().getMenuType().equals("Dessert"))
-                .count();
+                .mapToInt(Order::getQuantity)
+                .sum();
     }
 
     private int multiple(int count, int discount) {
@@ -44,7 +48,15 @@ public class DecemberDiscount {
         return NO_DISCOUNT;
     }
 
+    private boolean validateWeekend(int date) {
+        return (date % DAYS_IN_WEEK == 1) || (date % DAYS_IN_WEEK == 2);
+    }
+
     public int getDecemberDiscount() {
         return discount;
+    }
+
+    public boolean getDecemberWeekend() {
+        return isWeekendDiscount;
     }
 }
