@@ -1,39 +1,60 @@
 package christmas.view;
 
-import christmas.domain.Order;
-import christmas.domain.OrderMenu;
+import christmas.domain.order.Order;
 import java.text.DecimalFormat;
 import java.util.List;
-import org.mockito.internal.matchers.Or;
 
 
 public class OutputView {
     private static final String PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
     private static final String ORDER_MENU = "<주문 메뉴>";
     private static final String TOTAL_COST = "<할인 전 총주문 금액>";
+    private static final String GIVEAWAY_MENU = "<증정 메뉴>";
+    private static final String GIVEAWAY_CHAMPAGN = "샴페인 1개";
+    private static final String NOTHING = "없음";
+    private static final String BENEFIT_DETAIL = "<혜택 내역>";
+    private static final String CHRISTMAS_DISCOUNT = "크리스마스 디데이 할인: ";
+    private static final String WEEKEND_DISCOUNT = "주말 할인: ";
+    private static final String WEEKDAY_DISCOUNT = "평일 할인: ";
+    private static final String SPECIAL_DISCOUNT = "특별 할인: ";
+    private static final String GIFT_DISCOUNT = "증정 이벤트: ";
+    private static final String TOTAL_DISCOUNT = "<총혜택 금액>";
+    private static final String PAYMENT = "<할인 후 예상 결제 금액>";
+    private static final String EVENT_BADGE = "<12월 이벤트 배지>";
     private static final String DECIMALFORMAT = "#,###원";
+    private static final String DECIMALFORMAT_MINUS = "-#,###원";
     private final static String ENTER = "\n";
-
+    private final static int NO_DISCOUNT = 0;
+    private final static int DISCOUNT_EVENT_THRESHOLD = 10000;
     private static final DecimalFormat decimalFormat = new DecimalFormat(DECIMALFORMAT);
+    private static final DecimalFormat decimalFormatMinus = new DecimalFormat(DECIMALFORMAT_MINUS);
 
-
-    public static void output(int date, List<Order> orderList, int totalCost) {
+    public static void printReservationDate(int date) {
         System.out.printf(PREVIEW_MESSAGE, date);
         System.out.println(ENTER);
-        printOrderMenu(orderList);
-        printTotalCost(totalCost);
     }
 
-    private static void printOrderMenu(List<Order> orderList) {
+    public static void printOrderMenu(List<Order> orderList) {
         System.out.println(ORDER_MENU);
 
         orderList.forEach((order ->
                 System.out.println(order.getMenu().menuName + " " + order.getQuantity() + "개")));
     }
 
-    private static void printTotalCost(int totalCost) {
+    public static void printTotalCost(int totalCost) {
         System.out.print(ENTER);
         System.out.println(TOTAL_COST);
         System.out.println(decimalFormat.format(totalCost));
+    }
+
+    public static void printGiftMenu(int giftDiscount) {
+        System.out.print(ENTER);
+        System.out.println(GIVEAWAY_MENU);
+        if (giftDiscount != NO_DISCOUNT) {
+            System.out.println(GIVEAWAY_CHAMPAGN);
+        }
+        if (giftDiscount == NO_DISCOUNT) {
+            System.out.println(NOTHING);
+        }
     }
 }
