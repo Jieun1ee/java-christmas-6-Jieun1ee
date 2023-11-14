@@ -27,4 +27,10 @@ public class OrderMenu {
     public Order createOrder(String menuName, int menuCount) {
         return new Order(menuName, menuCount);
     }
+
+    public int calculateTotalCost() {
+        return totalOrder.stream()
+                .mapToInt(order -> order.getMenu().menuPrice * order.getQuantity())
+                .sum();
+    }
 }
