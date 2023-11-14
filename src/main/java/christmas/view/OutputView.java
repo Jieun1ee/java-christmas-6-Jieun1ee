@@ -57,4 +57,46 @@ public class OutputView {
             System.out.println(NOTHING);
         }
     }
+
+    public static void printBenefitDetail(int christmasDiscountAmount, int decemberDiscountAmount, boolean isWeekend,
+                                          int specialDiscountAmount, int giftDiscount, int totalCost) {
+        System.out.print(ENTER);
+        System.out.println(BENEFIT_DETAIL);
+        if (totalCost >= DISCOUNT_EVENT_THRESHOLD) {
+            printChristmasDiscount(christmasDiscountAmount);
+            printDecemberDiscount(decemberDiscountAmount, isWeekend);
+            printSpecialDiscount(specialDiscountAmount);
+            printGiftDiscount(giftDiscount);
+        }
+        if (totalCost < DISCOUNT_EVENT_THRESHOLD) {
+            System.out.println(NOTHING);
+        }
+    }
+
+    private static void printChristmasDiscount(int christmasDiscountAmount) {
+        if (christmasDiscountAmount != NO_DISCOUNT) {
+            System.out.println(CHRISTMAS_DISCOUNT + decimalFormatMinus.format(christmasDiscountAmount));
+        }
+    }
+
+    private static void printDecemberDiscount(int decemberDiscountAmount, boolean isWeekend) {
+        if (isWeekend) {
+            System.out.println(WEEKEND_DISCOUNT + decimalFormatMinus.format(decemberDiscountAmount));
+        }
+        if (!isWeekend) {
+            System.out.println(WEEKDAY_DISCOUNT + decimalFormatMinus.format(decemberDiscountAmount));
+        }
+    }
+
+    private static void printSpecialDiscount(int specialDiscountAmount) {
+        if (specialDiscountAmount != NO_DISCOUNT) {
+            System.out.println(SPECIAL_DISCOUNT + decimalFormatMinus.format(specialDiscountAmount));
+        }
+    }
+
+    private static void printGiftDiscount(int giftDiscount) {
+        if (giftDiscount != NO_DISCOUNT) {
+            System.out.println(GIFT_DISCOUNT + decimalFormatMinus.format(giftDiscount));
+        }
+    }
 }
