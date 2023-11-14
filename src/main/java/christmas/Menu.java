@@ -23,4 +23,8 @@ public enum Menu {
         this.menuName = menuName;
         this.menuPrice = menuPrice;
     }
+
+    public String getMenuType() {
+        return menuType;
+    }
 }

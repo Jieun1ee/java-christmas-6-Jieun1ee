@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.Menu;
 import christmas.utils.ChristmasUtils;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ public class OrderMenu {
 
     public OrderMenu(String input) {
         this.totalOrder = createTotalOrderMenu(input);
+        checkMenuType();
         checkTotalCount();
     }
 
@@ -47,5 +49,16 @@ public class OrderMenu {
         if (totalCount > 20) {
             throw new IllegalArgumentException("[ERROR] 총 수량이 20 초과");
         }
+    }
+
+    private void checkMenuType() {
+        if (isAllBeverage()) {
+            throw new IllegalArgumentException("[ERROR] 모든 주문이 음료");
+        }
+    }
+
+    private boolean isAllBeverage() {
+        return totalOrder.stream()
+                .allMatch(order -> "Beverage".equals(order.getMenu().getMenuType()));
     }
 }
