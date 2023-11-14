@@ -5,6 +5,7 @@ public class ChristmasDiscount {
     private final int DISCOUNT_INCREMENT_AMOUNT = 100;
     private final int D_DAY_DISCOUNT_START_DAY = 1;
     private final int D_DAY_DISCOUNT_END_DAY = 25;
+    private final int NO_DISCOUNT = 0;
     private int discount;
 
     public ChristmasDiscount(int date) {
@@ -16,7 +17,7 @@ public class ChristmasDiscount {
             // 1일부터 시작이므로 date - 1
             return (date - 1) * DISCOUNT_INCREMENT_AMOUNT + BASIC_DISCOUNT_AMOUNT;
         }
-        return 0;
+        return NO_DISCOUNT;
     }
 
     private boolean shouldApplyChristmasDiscount(int date) {
