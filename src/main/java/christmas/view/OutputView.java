@@ -110,10 +110,16 @@ public class OutputView {
             System.out.println(decimalFormatMinus.format(totalDiscount));
         }
     }
-    
+
     public static void printPayment(int payment) {
         System.out.print(ENTER);
         System.out.println(PAYMENT);
         System.out.println(decimalFormat.format(payment));
+    }
+    
+    public static void printEventBadge(String badge) {
+        System.out.print(ENTER);
+        System.out.println(EVENT_BADGE);
+        System.out.println(badge);
     }
 }
