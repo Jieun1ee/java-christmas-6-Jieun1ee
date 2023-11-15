@@ -1,14 +1,10 @@
 package christmas.domain.order;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import christmas.domain.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class TotalOrderMenuTest {
@@ -32,7 +28,15 @@ class TotalOrderMenuTest {
     @ValueSource(strings = {"시저샐러드-1,시저샐러드-1"})
     @ParameterizedTest
     void checkDuplicate(String input) {
-        assertThatThrownBy(() ->  new TotalOrderMenu(input))
+        assertThatThrownBy(() -> new TotalOrderMenu(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("총 주문에 대한 가격 검증")
+    @ValueSource(strings = {"티본스테이크-1,시저샐러드-1"})
+    @ParameterizedTest
+    void checkTotalCost(String input) {
+        int totalCost = new TotalOrderMenu(input).calculateTotalCost();
+        assertThat(totalCost).isEqualTo(63000);
     }
 }
