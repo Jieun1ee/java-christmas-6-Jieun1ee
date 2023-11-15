@@ -70,9 +70,10 @@ public class TotalOrderMenu {
     }
 
     private void checkDuplicate() {
-        Set<Order> orderSet = new HashSet<>();
+        Set<String> orderSet = new HashSet<>();
         totalOrder.forEach(order -> {
-            if (!orderSet.add(order)) {
+            String menuName = order.getMenu().menuName;
+            if (!orderSet.add(menuName)) {
                 throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
             }
         });
