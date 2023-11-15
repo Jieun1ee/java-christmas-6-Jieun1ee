@@ -21,7 +21,9 @@ class DecemberDiscountTest {
     @ParameterizedTest
     void calculateWeekdayDiscount(int date, List<Order> totalOrder, int totalCost) {
         int discount = new DecemberDiscount(date, totalOrder ,totalCost).getDiscount();
+        boolean isWeekend = new DecemberDiscount(date, totalOrder ,totalCost).getDecemberWeekend();
         assertThat(discount).isEqualTo(4046);
+        assertThat(isWeekend).isEqualTo(false);
     }
 
     private static Stream<Arguments> weekendOrderArguments() {
@@ -34,6 +36,8 @@ class DecemberDiscountTest {
     @ParameterizedTest
     void calculateWeekendDiscount(int date, List<Order> totalOrder, int totalCost) {
         int discount = new DecemberDiscount(date, totalOrder ,totalCost).getDiscount();
+        boolean isWeekend = new DecemberDiscount(date, totalOrder ,totalCost).getDecemberWeekend();
         assertThat(discount).isEqualTo(2023);
+        assertThat(isWeekend).isEqualTo(true);
     }
 }
