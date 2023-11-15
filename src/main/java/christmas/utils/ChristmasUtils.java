@@ -63,5 +63,4 @@ public class ChristmasUtils {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
-
 }
