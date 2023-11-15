@@ -1,5 +1,6 @@
 package christmas.utils;
 
+import christmas.domain.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class ChristmasUtils {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.DATE_ERROR.getErrorMessage());
         }
     }
 
@@ -23,22 +24,22 @@ public class ChristmasUtils {
 
     private static void validateComma(String input) {
         if (input.startsWith(COMMA) || input.endsWith(COMMA)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
         if (input.contains(COMMA + COMMA) || input.contains(COMMA + SPACE) || input.contains(SPACE + COMMA)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
 
     private static void validateHypen(String input) {
         if (input.startsWith(HYPEN) || input.endsWith(HYPEN)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
         if (input.contains(HYPEN + HYPEN)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
         if (input.contains(SPACE + HYPEN) || input.contains(HYPEN + SPACE)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
 
@@ -51,7 +52,7 @@ public class ChristmasUtils {
 
     private static void validateOrderForm(List<String> order) {
         if (order.size() != 2) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
 
@@ -59,7 +60,7 @@ public class ChristmasUtils {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
 

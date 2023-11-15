@@ -1,5 +1,6 @@
 package christmas.domain.order;
 
+import christmas.domain.ErrorMessage;
 import java.util.Arrays;
 
 public class Order {
@@ -16,12 +17,12 @@ public class Order {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.menuName.equals(menuName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage()));
     }
 
     private void validateQuantity(int quantity) {
         if (quantity <= 0) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
 

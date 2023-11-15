@@ -1,5 +1,6 @@
 package christmas.domain.order;
 
+import christmas.domain.ErrorMessage;
 import christmas.utils.ChristmasUtils;
 import java.util.HashSet;
 import java.util.List;
@@ -53,13 +54,13 @@ public class TotalOrderMenu {
                 .sum();
 
         if (totalCount > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
 
     private void checkMenuType() {
         if (isAllBeverage()) {
-            throw new IllegalArgumentException("[[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
         }
     }
 
@@ -72,7 +73,7 @@ public class TotalOrderMenu {
         Set<Order> orderSet = new HashSet<>();
         totalOrder.forEach(order -> {
             if (!orderSet.add(order)) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getErrorMessage());
             }
         });
     }
