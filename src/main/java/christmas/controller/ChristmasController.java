@@ -54,7 +54,7 @@ public class ChristmasController {
         int decemberDiscountAmount = decemberDiscount.getDiscount();
         boolean isWeekend = decemberDiscount.getDecemberWeekend();
 
-        SpecialDiscount specialDiscount = new SpecialDiscount(totalCost, date);
+        SpecialDiscount specialDiscount = new SpecialDiscount(date, totalCost);
         int specialDiscountAmount = specialDiscount.getDiscount();
 
         int discountAmountExcludingGift = christmasDiscountAmount + decemberDiscountAmount + specialDiscountAmount;
