@@ -16,12 +16,13 @@ class DecemberDiscountTest {
                 Arguments.of(5, List.of(new Order("초코케이크", 1), new Order("초코케이크", 1)), 15000)
         );
     }
+
     @DisplayName("평일 할인")
     @MethodSource("weekdayOrderArguments")
     @ParameterizedTest
     void calculateWeekdayDiscount(int date, List<Order> totalOrder, int totalCost) {
-        int discount = new DecemberDiscount(date, totalOrder ,totalCost).getDiscount();
-        boolean isWeekend = new DecemberDiscount(date, totalOrder ,totalCost).getDecemberWeekend();
+        int discount = new DecemberDiscount(date, totalOrder, totalCost).getDiscount();
+        boolean isWeekend = new DecemberDiscount(date, totalOrder, totalCost).getDecemberWeekend();
         assertThat(discount).isEqualTo(4046);
         assertThat(isWeekend).isEqualTo(false);
     }
@@ -31,12 +32,13 @@ class DecemberDiscountTest {
                 Arguments.of(1, List.of(new Order("티본스테이크", 1), new Order("초코케이크", 1)), 15000)
         );
     }
+
     @DisplayName("평일 할인")
     @MethodSource("weekendOrderArguments")
     @ParameterizedTest
     void calculateWeekendDiscount(int date, List<Order> totalOrder, int totalCost) {
-        int discount = new DecemberDiscount(date, totalOrder ,totalCost).getDiscount();
-        boolean isWeekend = new DecemberDiscount(date, totalOrder ,totalCost).getDecemberWeekend();
+        int discount = new DecemberDiscount(date, totalOrder, totalCost).getDiscount();
+        boolean isWeekend = new DecemberDiscount(date, totalOrder, totalCost).getDecemberWeekend();
         assertThat(discount).isEqualTo(2023);
         assertThat(isWeekend).isEqualTo(true);
     }
