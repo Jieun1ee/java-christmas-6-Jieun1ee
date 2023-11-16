@@ -29,9 +29,26 @@ class ChristmasControllerTest extends NsTest {
         });
     }
 
-    @DisplayName("예시에 맞는 총 출력_크리스마스 이전_주말할인")
+    @DisplayName("예시에 맞는 총 출력_크리스마스 이전_평일할인X")
     @Test
     void 모든_결과값_출력_2() {
+        assertSimpleTest(() -> {
+            run("3", "타파스-1,제로콜라-2");
+            assertThat(output()).contains(
+                    "타파스 1개",
+                    "제로콜라 2개",
+                    "11,500원",
+                    "크리스마스 디데이 할인: -1,200원\n"
+                            + "특별 할인: -1,000원\n",
+                    "-2,200원",
+                    "9,300원"
+            );
+        });
+    }
+
+    @DisplayName("예시에 맞는 총 출력_크리스마스 이전_주말할인")
+    @Test
+    void 모든_결과값_출력_3() {
         assertSimpleTest(() -> {
             run("1", "티본스테이크-1,바비큐립-1,시저샐러드-1");
             assertThat(output()).contains(
@@ -50,7 +67,7 @@ class ChristmasControllerTest extends NsTest {
 
     @DisplayName("예시에 맞는 총 출력_크리스마스 당일")
     @Test
-    void 모든_결과값_출력_3() {
+    void 모든_결과값_출력_4() {
         assertSimpleTest(() -> {
             run("25", "티본스테이크-2,바비큐립-1,초코케이크-2,제로콜라-1");
             assertThat(output()).contains(
@@ -65,6 +82,20 @@ class ChristmasControllerTest extends NsTest {
                     "-33,446원",
                     "188,554원",
                     "산타"
+            );
+        });
+    }
+
+    @DisplayName("예시에 맞는 총 출력_크리스마스 이후")
+    @Test
+    void 모든_결과값_출력_5() {
+        assertSimpleTest(() -> {
+            run("26", "타파스-1,제로콜라-2");
+            assertThat(output()).contains(
+                    "타파스 1개",
+                    "제로콜라 2개",
+                    "11,500원",
+                    "0원"
             );
         });
     }

@@ -62,14 +62,36 @@ public class OutputView {
                                           int specialDiscountAmount, int giftDiscount, int totalCost) {
         System.out.print(ENTER);
         System.out.println(BENEFIT_DETAIL);
-        if (totalCost >= DISCOUNT_EVENT_THRESHOLD) {
+        //평일 할인과 주말 할인이 적용되는 예
+        if (totalCost >= DISCOUNT_EVENT_THRESHOLD && decemberDiscountAmount != NO_DISCOUNT) {
             printChristmasDiscount(christmasDiscountAmount);
             printDecemberDiscount(decemberDiscountAmount, isWeekend);
             printSpecialDiscount(specialDiscountAmount);
             printGiftDiscount(giftDiscount);
         }
+        //할인이 적용되지 않는 예
         if (totalCost < DISCOUNT_EVENT_THRESHOLD) {
             System.out.println(NOTHING);
+        }
+        // 25일 이내인데 평일할인이나 주말할인이 적용되지 않는 예
+        if (totalCost >= DISCOUNT_EVENT_THRESHOLD && decemberDiscountAmount == NO_DISCOUNT
+                && christmasDiscountAmount != NO_DISCOUNT) {
+            printChristmasDiscount(christmasDiscountAmount);
+            printSpecialDiscount(specialDiscountAmount);
+            printGiftDiscount(giftDiscount);
+        }
+        //25일 이후인데 평일할인이나 주말할인이 적용되지 않는 예
+        if (totalCost >= DISCOUNT_EVENT_THRESHOLD && decemberDiscountAmount == NO_DISCOUNT
+                && christmasDiscountAmount == NO_DISCOUNT && specialDiscountAmount == NO_DISCOUNT
+                && giftDiscount == NO_DISCOUNT) {
+            System.out.println(NOTHING);
+        }
+        //25일 이후인데 평일할인이나 주말할인이 적용되지 않는데 스페셜이나 증정 이벤트에 포함이 되는 경우
+        if (totalCost >= DISCOUNT_EVENT_THRESHOLD && decemberDiscountAmount == NO_DISCOUNT
+                && christmasDiscountAmount == NO_DISCOUNT && specialDiscountAmount != NO_DISCOUNT
+                && giftDiscount != NO_DISCOUNT) {
+            printSpecialDiscount(specialDiscountAmount);
+            printGiftDiscount(giftDiscount);
         }
     }
 
